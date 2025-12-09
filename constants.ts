@@ -60,6 +60,12 @@ export const DEFAULT_PORTFOLIO: PortfolioData = {
   ],
   projects: [
     {
+      title: "CRIS – Central Railway Information System",
+      description: "Large-scale government railway data modernization project designed to centralize, process, and operationalize massive datasets across the national railway network. As an Azure Data Engineer, contributed to designing and implementing end-to-end ETL/ELT pipelines for 16+ PB of data, improving data reliability, observability, and availability for downstream analytics and ML teams.",
+      technologies: ["Azure Data Factory", "Azure Databricks", "DLT", "PySpark", "ADLS Gen2", "Postgres", "Azure Pipelines", "Delta Lake", "Data Modeling"],
+      link: "#"
+    },
+    {
       title: "OSTTRA",
       description: "Implemented scalable data transformation workflows in Azure Databricks using PySpark, ensuring clean and validated data for reporting in Azure Synapse.",
       technologies: ["SQL", "Python", "Databricks", "PySpark", "ADF"],
