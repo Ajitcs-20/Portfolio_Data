@@ -6,7 +6,7 @@ export const DEFAULT_PORTFOLIO: PortfolioData = {
   bio: "Azure Data Engineer at ThoughtSol Infotech with extensive experience in building ETL pipelines using Python, SQL, and Azure. Previously worked at BluePi Consulting handling data engineering and frontend tasks. Expert in Databricks, PySpark, and React.js.",
   email: "ajitsharma4789@gmail.com",
   location: "India",
-  avatarUrl: "/Ajit_Pic.jpg",
+  avatarUrl: "./Ajit_Pic.jpg",
   skills: [
     "Azure Data Factory", "Azure Databricks", "Azure Synapse", 
     "Python", "SQL", "PySpark", "Delta Lake",
