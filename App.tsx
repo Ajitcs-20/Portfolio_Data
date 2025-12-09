@@ -5,6 +5,8 @@ import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
 import { Terminal } from './components/Terminal';
+import { WaterAnimation } from './components/WaterAnimation';
+import { FloatingParticles } from './components/FloatingParticles';
 import { PortfolioData, SectionType } from './types';
 import { DEFAULT_PORTFOLIO } from './constants';
 import { generatePortfolioContent } from './services/geminiService';
@@ -79,11 +81,15 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="bg-dark min-h-screen text-slate-200 selection:bg-primary/30 selection:text-white relative">
+    <div className="bg-dark min-h-screen text-slate-200 selection:bg-primary/30 selection:text-white relative overflow-hidden">
+      {/* Animated Background Effects */}
+      <FloatingParticles count={60} />
+      <WaterAnimation />
+      
       {/* Background Grid */}
-      <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-0"></div>
+      <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-10"></div>
 
-      <div className="relative z-10">
+      <div className="relative z-20">
         <Navigation 
           activeSection={activeSection} 
           scrollToSection={scrollToSection}
