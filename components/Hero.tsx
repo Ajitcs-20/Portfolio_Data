@@ -55,28 +55,28 @@ export const Hero: React.FC<HeroProps> = ({ data, onInitializeChat }) => {
             <span className="text-primary font-mono text-xs tracking-widest uppercase">System Status: Online</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
-            <span className="text-white">HELLO_WORLD</span><br/>
-            <span className="text-slate-400 text-3xl md:text-5xl">I am {data.name}</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(14,165,233,0.8)]">
+            <span className="text-white hover:text-cyan-300 transition-colors">HELLO_WORLD</span><br/>
+            <span className="text-slate-400 text-3xl md:text-5xl hover:text-cyan-400 transition-colors">I am {data.name}</span>
           </h1>
           
-          <h2 className="text-xl md:text-2xl text-primary mb-6 font-mono h-8">
+          <h2 className="text-xl md:text-2xl text-primary mb-6 font-mono h-8 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">
             {displayText}<span className="animate-pulse">_</span>
           </h2>
           
-          <p className="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed font-mono text-sm border-l-2 border-primary/50 pl-4 py-2 bg-gradient-to-r from-primary/5 to-transparent">
+          <p className="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed font-mono text-sm border-l-2 border-primary/50 pl-4 py-2 bg-gradient-to-r from-primary/5 to-transparent cursor-pointer transition-all duration-300 hover:text-slate-200 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)] hover:border-primary hover:bg-gradient-to-r hover:from-primary/15 hover:to-transparent">
             {data.bio}
           </p>
           
           <div className="flex flex-wrap gap-4">
             <button 
               onClick={onInitializeChat}
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-sm font-semibold transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-sm font-semibold transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] hover:drop-shadow-[0_0_15px_rgba(14,165,233,0.8)]"
             >
               Initialize Chat
               <ArrowRight size={18} />
             </button>
-            <button className="border border-slate-600 hover:border-primary text-slate-300 hover:text-white px-8 py-3 rounded-sm font-semibold transition-all flex items-center gap-2 font-mono hover:bg-primary/10">
+            <button className="border border-slate-600 hover:border-primary text-slate-300 hover:text-white px-8 py-3 rounded-sm font-semibold transition-all flex items-center gap-2 font-mono hover:bg-primary/10 hover:drop-shadow-[0_0_12px_rgba(14,165,233,0.6)]">
               <Download size={18} />
               get_resume.pdf
             </button>

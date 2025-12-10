@@ -130,11 +130,11 @@ const App: React.FC = () => {
 
           <section id={SectionType.ABOUT} className="py-20 bg-dark-lighter/50 relative border-y border-white/5">
             <div className="container mx-auto px-6 text-center max-w-3xl">
-              <div className="inline-block p-2 rounded-lg bg-primary/10 mb-6 border border-primary/20">
+              <div className="inline-block p-2 rounded-lg bg-primary/10 mb-6 border border-primary/20 cursor-pointer transition-all duration-300 hover:bg-primary/20 hover:border-primary/40 hover:drop-shadow-[0_0_12px_rgba(14,165,233,0.6)]">
                  <span className="code-font text-primary text-sm font-bold">SELECT * FROM developers WHERE name = 'Ajit'</span>
               </div>
-              <h2 className="text-3xl font-bold mb-8">About <span className="text-gradient">Me</span></h2>
-              <p className="text-lg text-slate-400 leading-loose code-font font-light">{data.bio}</p>
+              <h2 className="text-3xl font-bold mb-8 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(14,165,233,0.8)] hover:text-cyan-300">About <span className="text-gradient">Me</span></h2>
+              <p className="text-lg text-slate-400 leading-loose code-font font-light cursor-pointer transition-all duration-300 hover:text-slate-200 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">{data.bio}</p>
             </div>
           </section>
 
@@ -153,8 +153,8 @@ const App: React.FC = () => {
           <section id={SectionType.CONTACT} className="py-32 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none"></div>
             <div className="container mx-auto px-6 text-center relative z-10">
-              <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to <span className="text-gradient">Connect?</span></h2>
-              <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto code-font">
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_25px_rgba(14,165,233,0.9)] hover:text-cyan-300">Ready to <span className="text-gradient">Connect?</span></h2>
+              <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto code-font cursor-pointer transition-all duration-300 hover:text-slate-200 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">
                 // Initialize connection handshake
               </p>
 
