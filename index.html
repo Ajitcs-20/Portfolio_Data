@@ -16,13 +16,19 @@
               mono: ['JetBrains Mono', 'monospace'],
             },
             colors: {
-              primary: '#0ea5e9', // Sky 500 (Azure Blue)
-              secondary: '#06b6d4', // Cyan 500
-              accent: '#6366f1', // Indigo 500
-              dark: '#0b1120', // Deep Slate
-              'dark-lighter': '#151e32',
-              'terminal': '#1e293b',
-              success: '#22c55e', // Green for success logs
+              primary: 'rgb(var(--color-primary) / <alpha-value>)',
+              secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+              accent: 'rgb(var(--color-accent) / <alpha-value>)',
+              success: 'rgb(var(--color-success) / <alpha-value>)',
+
+              background: 'rgb(var(--color-background) / <alpha-value>)',
+              foreground: 'rgb(var(--color-foreground) / <alpha-value>)',
+
+              'bg-secondary': 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+              'terminal': 'rgb(var(--color-terminal) / <alpha-value>)',
+
+              'muted-foreground': 'rgb(var(--color-muted-foreground) / <alpha-value>)',
+              'border': 'rgb(var(--color-border) / <alpha-value>)',
             },
             animation: {
               'float': 'float 6s ease-in-out infinite',
@@ -54,44 +60,75 @@
       }
     </script>
     <style>
+      :root {
+        --color-primary: 14 165 233; /* sky-500 */
+        --color-secondary: 6 182 212; /* cyan-500 */
+        --color-accent: 99 102 241; /* indigo-500 */
+        --color-success: 22 163 74; /* green-600 */
+
+        --color-background: 255 255 255; /* white */
+        --color-foreground: 15 23 42; /* slate-900 */
+        --color-bg-secondary: 241 245 249; /* slate-100 */
+        --color-terminal: 248 250 252; /* slate-50 */
+
+        --color-muted-foreground: 71 85 105; /* slate-500 */
+        --color-border: 226 232 240; /* slate-200 */
+      }
+
+      .dark {
+        --color-primary: 14 165 233; /* sky-500 */
+        --color-secondary: 6 182 212; /* cyan-500 */
+        --color-accent: 99 102 241; /* indigo-500 */
+        --color-success: 34 197 94; /* green-500 */
+
+        --color-background: 11 17 32; /* custom dark */
+        --color-foreground: 226 232 240; /* slate-200 */
+        --color-bg-secondary: 21 30 50; /* custom dark-lighter */
+        --color-terminal: 30 41 59; /* slate-800 */
+
+        --color-muted-foreground: 100 116 139; /* slate-400 */
+        --color-border: 30 41 59; /* slate-800 */
+      }
+
       body {
-        background-color: #0b1120;
-        color: #f8fafc;
+        background-color: rgb(var(--color-background));
+        color: rgb(var(--color-foreground));
         overflow-x: hidden;
         cursor: text; /* Terminal vibe */
+        transition: background-color 0.3s, color 0.3s;
       }
       
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 10px;
-        background: #0b1120;
+        background: rgb(var(--color-background));
       }
       ::-webkit-scrollbar-thumb {
-        background: #1e293b;
-        border: 1px solid #0ea5e9;
+        background: rgb(var(--color-terminal));
+        border: 1px solid rgb(var(--color-primary));
         border-radius: 0;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #0ea5e9;
+        background: rgb(var(--color-primary));
       }
 
       .bg-grid-pattern {
         background-size: 40px 40px;
         background-image: 
-          linear-gradient(to right, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+          linear-gradient(to right, rgb(var(--color-primary) / 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgb(var(--color-primary) / 0.03) 1px, transparent 1px);
       }
       
       .glass-card {
-        background: rgba(21, 30, 50, 0.85);
+        background: rgb(var(--color-bg-secondary) / 0.85);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(14, 165, 233, 0.2);
+        border: 1px solid rgb(var(--color-primary) / 0.2);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
       }
       
       .text-gradient {
-        background: linear-gradient(to right, #0ea5e9, #06b6d4, #6366f1);
+        background: linear-gradient(to right, rgb(var(--color-primary)), rgb(var(--color-secondary)), rgb(var(--color-accent)));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }

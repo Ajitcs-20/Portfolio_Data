@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import { SectionType } from '../types';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavigationProps {
   activeSection: SectionType;
@@ -37,10 +38,10 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToS
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-dark/80 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-border py-4' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <div className="text-2xl font-bold tracking-tighter cursor-pointer" onClick={() => scrollToSection(SectionType.HOME)}>
-          <span className="text-white">Ajit</span>
+          <span className="text-foreground">Ajit</span>
           <span className="text-primary">.dev</span>
         </div>
 
@@ -50,39 +51,43 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToS
             <button
               key={link.id}
               onClick={() => scrollToSection(link.id)}
-              className={`text-sm font-medium transition-colors hover:text-primary ${activeSection === link.id ? 'text-primary' : 'text-slate-300'}`}
+              className={`text-sm font-medium transition-colors hover:text-primary ${activeSection === link.id ? 'text-primary' : 'text-foreground/80'}`}
             >
               {link.label}
             </button>
           ))}
         </div>
 
-        <div className="hidden md:flex items-center space-x-4">
-          {socials.slice(0, 3).map((social, idx) => (
-            <a 
-              key={idx}
-              href={social.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white transition-colors"
-            >
-              {getIcon(social.platform)}
-            </a>
-          ))}
-        </div>
+        <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            {socials.slice(0, 3).map((social, idx) => (
+              <a
+                key={idx}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {getIcon(social.platform)}
+              </a>
+            ))}
+          </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          <ThemeToggle />
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-dark/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border p-6 flex flex-col space-y-4 shadow-2xl">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -90,7 +95,7 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToS
                 scrollToSection(link.id);
                 setIsMobileMenuOpen(false);
               }}
-              className={`text-lg font-medium py-2 ${activeSection === link.id ? 'text-primary' : 'text-slate-300'}`}
+              className={`text-lg font-medium py-2 ${activeSection === link.id ? 'text-primary' : 'text-muted-foreground'}`}
             >
               {link.label}
             </button>

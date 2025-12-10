@@ -79,7 +79,7 @@ const App: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-full bg-dark flex flex-col items-center justify-center text-white">
+      <div className="h-screen w-full bg-background flex flex-col items-center justify-center text-foreground">
         <Loader2 className="animate-spin text-primary mb-4" size={48} />
         <p className="animate-pulse code-font">Initializing Data Pipeline...</p>
       </div>
@@ -87,7 +87,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="bg-dark min-h-screen text-slate-200 selection:bg-primary/30 selection:text-white relative overflow-hidden">
+    <div className="bg-background min-h-screen text-foreground selection:bg-primary/30 selection:text-white relative overflow-hidden">
       {/* Animated Background Effects */}
       <FloatingParticles count={60} />
       <WaterAnimation />
@@ -128,13 +128,13 @@ const App: React.FC = () => {
             <Hero data={data} onInitializeChat={handleInitializeChat} />
           </section>
 
-          <section id={SectionType.ABOUT} className="py-20 bg-dark-lighter/50 relative border-y border-white/5">
+          <section id={SectionType.ABOUT} className="py-20 bg-bg-secondary/50 relative border-y border-border">
             <div className="container mx-auto px-6 text-center max-w-3xl">
               <div className="inline-block p-2 rounded-lg bg-primary/10 mb-6 border border-primary/20 cursor-pointer transition-all duration-300 hover:bg-primary/20 hover:border-primary/40 hover:drop-shadow-[0_0_12px_rgba(14,165,233,0.6)]">
                  <span className="code-font text-primary text-sm font-bold">SELECT * FROM developers WHERE name = 'Ajit'</span>
               </div>
               <h2 className="text-3xl font-bold mb-8 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(14,165,233,0.8)] hover:text-cyan-300">About <span className="text-gradient">Me</span></h2>
-              <p className="text-lg text-slate-400 leading-loose code-font font-light cursor-pointer transition-all duration-300 hover:text-slate-200 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">{data.bio}</p>
+              <p className="text-lg text-muted-foreground leading-loose code-font font-light cursor-pointer transition-all duration-300 hover:text-foreground/80 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">{data.bio}</p>
             </div>
           </section>
 
@@ -146,7 +146,7 @@ const App: React.FC = () => {
             <Experience experience={data.experience} />
           </section>
 
-          <section id={SectionType.PROJECTS} className="bg-dark-lighter/30 border-t border-white/5">
+          <section id={SectionType.PROJECTS} className="bg-bg-secondary/30 border-t border-border">
             <Projects projects={data.projects} />
           </section>
 
@@ -154,7 +154,7 @@ const App: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none"></div>
             <div className="container mx-auto px-6 text-center relative z-10">
               <h2 className="text-4xl md:text-6xl font-bold mb-8 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_25px_rgba(14,165,233,0.9)] hover:text-cyan-300">Ready to <span className="text-gradient">Connect?</span></h2>
-              <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto code-font cursor-pointer transition-all duration-300 hover:text-slate-200 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">
+              <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto code-font cursor-pointer transition-all duration-300 hover:text-foreground/80 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">
                 // Initialize connection handshake
               </p>
 
@@ -163,11 +163,11 @@ const App: React.FC = () => {
                 {/* Email */}
                 <a
                   href={`mailto:${data.email}`}
-                  className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-sm hover:border-cyan-500/60 transition-all hover:scale-105"
+                  className="flex items-center gap-3 px-6 py-3 bg-cyan-500/10 border border-cyan-500/20 rounded-sm hover:border-cyan-500/40 transition-all hover:scale-105"
                   title={`Email: ${data.email}`}
                 >
                   <Mail size={24} className="text-cyan-400" />
-                  <span className="font-mono text-slate-300">Email</span>
+                  <span className="font-mono text-muted-foreground">Email</span>
                 </a>
 
                 {/* LinkedIn */}
@@ -176,11 +176,11 @@ const App: React.FC = () => {
                     href={data.socials.find(s => s.platform === 'LinkedIn')?.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 rounded-sm hover:border-blue-500/60 transition-all hover:scale-105"
+                    className="flex items-center gap-3 px-6 py-3 bg-blue-500/10 border border-blue-500/20 rounded-sm hover:border-blue-500/40 transition-all hover:scale-105"
                     title="LinkedIn Profile"
                   >
                     <Linkedin size={24} className="text-blue-400" />
-                    <span className="font-mono text-slate-300">LinkedIn</span>
+                    <span className="font-mono text-muted-foreground">LinkedIn</span>
                   </a>
                 )}
 
@@ -190,18 +190,18 @@ const App: React.FC = () => {
                     href={data.socials.find(s => s.platform === 'GitHub')?.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-slate-500/20 to-gray-500/20 border border-slate-500/30 rounded-sm hover:border-slate-500/60 transition-all hover:scale-105"
+                    className="flex items-center gap-3 px-6 py-3 bg-slate-500/10 border border-slate-500/20 rounded-sm hover:border-slate-500/40 transition-all hover:scale-105"
                     title="GitHub Profile"
                   >
-                    <Github size={24} className="text-slate-300" />
-                    <span className="font-mono text-slate-300">GitHub</span>
+                    <Github size={24} className="text-foreground/80" />
+                    <span className="font-mono text-muted-foreground">GitHub</span>
                   </a>
                 )}
               </div>
 
-              <p className="text-sm text-slate-500 mb-8 code-font">Or reach out directly via any of the above channels</p>
+              <p className="text-sm text-muted-foreground/80 mb-8 code-font">Or reach out directly via any of the above channels</p>
               
-              <footer className="mt-20 text-slate-600 code-font text-xs uppercase tracking-widest">
+              <footer className="mt-20 text-muted-foreground/60 code-font text-xs uppercase tracking-widest">
                 <p>/* System Status: Operational | © {new Date().getFullYear()} {data.name} */</p>
               </footer>
             </div>

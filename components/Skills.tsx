@@ -8,7 +8,7 @@ interface SkillsProps {
 
 export const Skills: React.FC<SkillsProps> = ({ skills }) => {
   return (
-    <div className="container mx-auto px-6 py-20 bg-dark-lighter/20 border-y border-white/5">
+    <div className="container mx-auto px-6 py-20 bg-bg-secondary/20 border-y border-border">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
         
         {/* Left Side: Title & Info */}
@@ -23,12 +23,12 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
             <span className="font-mono text-sm tracking-widest">SYSTEM_CAPABILITIES</span>
           </div>
           <h2 className="text-4xl font-bold mb-6">Tech <span className="text-gradient">Stack</span></h2>
-          <p className="text-slate-400 mb-8 leading-relaxed">
+          <p className="text-muted-foreground mb-8 leading-relaxed">
             My engineering toolkit is optimized for scalable data processing, cloud architecture, and modern frontend development.
           </p>
           
-          <div className="bg-slate-900 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
-            <div className="flex justify-between border-b border-slate-800 pb-2 mb-2">
+          <div className="bg-terminal p-4 rounded border border-border font-mono text-xs text-muted-foreground">
+            <div className="flex justify-between border-b border-border pb-2 mb-2">
               <span>CPU_USAGE</span>
               <span className="text-green-500">34%</span>
             </div>
@@ -41,20 +41,20 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
 
         {/* Right Side: JSON/Grid View */}
         <motion.div 
-           className="md:w-2/3 bg-dark border border-slate-800 rounded-lg p-6 font-mono text-sm shadow-2xl relative overflow-hidden"
+           className="md:w-2/3 bg-background border border-border rounded-lg p-6 font-mono text-sm shadow-2xl relative overflow-hidden"
            initial={{ opacity: 0, scale: 0.95 }}
            whileInView={{ opacity: 1, scale: 1 }}
            viewport={{ once: true }}
         >
           {/* Header */}
-          <div className="absolute top-0 left-0 w-full h-8 bg-slate-800 border-b border-slate-700 flex items-center px-4 gap-2">
+          <div className="absolute top-0 left-0 w-full h-8 bg-terminal border-b border-border flex items-center px-4 gap-2">
             <div className="w-2 h-2 rounded-full bg-red-500"></div>
             <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
             <div className="w-2 h-2 rounded-full bg-green-500"></div>
-            <span className="ml-2 text-xs text-slate-400">config.json</span>
+            <span className="ml-2 text-xs text-muted-foreground">config.json</span>
           </div>
 
-          <div className="mt-6 text-slate-300">
+          <div className="mt-6 text-foreground/80">
             <div><span className="text-purple-400">export const</span> <span className="text-yellow-300">stack</span> = <span className="text-blue-400">{'{'}</span></div>
             
             <div className="pl-4 py-2 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
@@ -64,9 +64,9 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.03 }}
-                  className="hover:bg-slate-800/50 cursor-crosshair rounded px-2 -mx-2 flex items-center group"
+                  className="hover:bg-terminal cursor-crosshair rounded px-2 -mx-2 flex items-center group"
                 >
-                  <span className="text-slate-500 mr-2 opacity-50 select-none">{String(index).padStart(2, '0')}</span>
+                  <span className="text-muted-foreground/50 mr-2 opacity-50 select-none">{String(index).padStart(2, '0')}</span>
                   <span className="text-secondary">"{skill}"</span>: <span className="text-green-400 group-hover:animate-pulse">true</span>,
                 </motion.div>
               ))}
@@ -76,7 +76,7 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
           </div>
           
           {/* Decorative blinking cursor at end */}
-          <div className="mt-2 w-2 h-4 bg-slate-500 animate-pulse inline-block"></div>
+          <div className="mt-2 w-2 h-4 bg-muted-foreground animate-pulse inline-block"></div>
         </motion.div>
 
       </div>

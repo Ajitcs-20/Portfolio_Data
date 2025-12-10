@@ -110,10 +110,10 @@ export const Terminal: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <div className="bg-dark-lighter border border-slate-700 rounded-t-lg shadow-2xl flex flex-col h-full overflow-hidden backdrop-blur-md">
+      <div className="bg-bg-secondary border border-border rounded-t-lg shadow-2xl flex flex-col h-full overflow-hidden backdrop-blur-md">
         {/* Header */}
         <div 
-          className="bg-slate-800 px-3 py-2 flex justify-between items-center cursor-pointer border-b border-slate-700 hover:bg-slate-700 transition-colors"
+          className="bg-terminal px-3 py-2 flex justify-between items-center cursor-pointer border-b border-border hover:bg-border/20 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="flex items-center gap-2 text-primary font-mono text-xs">
@@ -121,7 +121,7 @@ export const Terminal: React.FC = () => {
             <span>SYSTEM_LOGS</span>
           </div>
           <div className="flex gap-2">
-            {isOpen ? <Minimize2 size={12} className="text-slate-400 hover:text-white" /> : <Maximize2 size={12} className="text-slate-400 hover:text-white" />}
+            {isOpen ? <Minimize2 size={12} className="text-muted-foreground hover:text-foreground" /> : <Maximize2 size={12} className="text-muted-foreground hover:text-foreground" />}
           </div>
         </div>
 
@@ -129,7 +129,7 @@ export const Terminal: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div 
-              className="flex-1 p-3 overflow-y-auto font-mono text-xs bg-black/90 flex flex-col cursor-text"
+              className="flex-1 p-3 overflow-y-auto font-mono text-xs bg-background/90 flex flex-col cursor-text"
               initial={{ height: 0 }}
               animate={{ height: 'auto' }}
               exit={{ height: 0 }}
@@ -139,14 +139,14 @@ export const Terminal: React.FC = () => {
                 {logs.map((log: any, i) => (
                   <div key={i} className="break-words leading-relaxed">
                     {log.type === 'user' ? (
-                       <span className="text-white">
+                       <span className="text-foreground">
                          <span className="text-primary mr-2">visitor@ajit.dev:~$</span>
                          {log.message}
                        </span>
                     ) : log.type === 'response' ? (
-                      <span className="text-cyan-300">{log.message}</span>
+                      <span className="text-cyan-400">{log.message}</span>
                     ) : (
-                      <span className="text-slate-400">
+                      <span className="text-muted-foreground">
                         <span className="text-green-500 mr-2">➜</span>
                         {log.message}
                       </span>
@@ -157,14 +157,14 @@ export const Terminal: React.FC = () => {
               </div>
 
               {/* Input Field */}
-              <form onSubmit={handleCommand} className="mt-2 flex items-center pt-2 border-t border-slate-800/50">
+              <form onSubmit={handleCommand} className="mt-2 flex items-center pt-2 border-t border-border/50">
                 <span className="text-primary mr-2 whitespace-nowrap">visitor@ajit.dev:~$</span>
                 <input 
                   ref={inputRef}
                   type="text" 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="flex-1 bg-transparent border-none outline-none text-white placeholder-slate-600 w-full"
+                  className="flex-1 bg-transparent border-none outline-none text-foreground placeholder-muted-foreground/50 w-full"
                   placeholder="Enter command..."
                   autoComplete="off"
                 />
