@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0b1120" />
+  <rect x="60" y="60" width="1080" height="510" rx="20" fill="url(#g)" opacity="0.12" />
+  <g font-family="Outfit, sans-serif">
+    <text x="120" y="260" fill="#ffffff" font-size="56" font-weight="700">Ajit Sharma</text>
+    <text x="120" y="330" fill="#cfeafe" font-size="36">Data Engineer • Full‑Stack Developer</text>
+  </g>
+  <g transform="translate(960,480)" opacity="0.85">
+    <rect x="-180" y="-40" width="360" height="80" rx="10" fill="#0ea5e9" />
+    <text x="0" y="15" fill="#021028" font-size="20" font-family="JetBrains Mono, monospace" font-weight="700" text-anchor="middle">ajitsharma4789@gmail.com</text>
+  </g>
+</svg>
