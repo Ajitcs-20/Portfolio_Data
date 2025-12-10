@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Experience } from './components/Experience';
@@ -7,12 +7,14 @@ import { Skills } from './components/Skills';
 import { Terminal } from './components/Terminal';
 import { WaterAnimation } from './components/WaterAnimation';
 import { FloatingParticles } from './components/FloatingParticles';
+import { AssistantChat, type AssistantChatHandle } from './components/AssistantChat';
 import { PortfolioData, SectionType } from './types';
 import { DEFAULT_PORTFOLIO } from './constants';
 import { generatePortfolioContent } from './services/geminiService';
-import { Loader2, Wand2 } from 'lucide-react';
+import { Loader2, Wand2, Mail, Linkedin, Github } from 'lucide-react';
 
 const App: React.FC = () => {
+  const chatRef = useRef<AssistantChatHandle>(null);
   const [activeSection, setActiveSection] = useState<SectionType>(SectionType.HOME);
   const [data, setData] = useState<PortfolioData>(DEFAULT_PORTFOLIO);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -20,7 +22,6 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const LINKEDIN_URL = "https://www.linkedin.com/in/ajit-sharma-ajitcse20/";
-
   // Smooth scroll handler
   const scrollToSection = (section: SectionType) => {
     setActiveSection(section);
@@ -28,6 +29,11 @@ const App: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Handler to open chat
+  const handleInitializeChat = () => {
+    chatRef.current?.openChat();
   };
 
   // Intersection Observer to update active section on scroll
@@ -89,6 +95,9 @@ const App: React.FC = () => {
       {/* Background Grid */}
       <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-10"></div>
 
+      {/* Assistant Chat */}
+      <AssistantChat ref={chatRef} />
+
       <div className="relative z-20">
         <Navigation 
           activeSection={activeSection} 
@@ -116,7 +125,7 @@ const App: React.FC = () => {
 
         <main>
           <section id={SectionType.HOME}>
-            <Hero data={data} />
+            <Hero data={data} onInitializeChat={handleInitializeChat} />
           </section>
 
           <section id={SectionType.ABOUT} className="py-20 bg-dark-lighter/50 relative border-y border-white/5">
@@ -148,12 +157,49 @@ const App: React.FC = () => {
               <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto code-font">
                 // Initialize connection handshake
               </p>
-              <a 
-                href={`mailto:${data.email}`}
-                className="inline-block bg-white text-dark px-10 py-4 rounded-sm font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-[4px_4px_0px_0px_rgba(14,165,233,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
-              >
-                EXECUTE_MAILTO()
-              </a>
+
+              {/* Contact Methods */}
+              <div className="flex flex-wrap gap-6 justify-center mb-12">
+                {/* Email */}
+                <a
+                  href={`mailto:${data.email}`}
+                  className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-sm hover:border-cyan-500/60 transition-all hover:scale-105"
+                  title={`Email: ${data.email}`}
+                >
+                  <Mail size={24} className="text-cyan-400" />
+                  <span className="font-mono text-slate-300">Email</span>
+                </a>
+
+                {/* LinkedIn */}
+                {data.socials?.find(s => s.platform === 'LinkedIn') && (
+                  <a
+                    href={data.socials.find(s => s.platform === 'LinkedIn')?.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 rounded-sm hover:border-blue-500/60 transition-all hover:scale-105"
+                    title="LinkedIn Profile"
+                  >
+                    <Linkedin size={24} className="text-blue-400" />
+                    <span className="font-mono text-slate-300">LinkedIn</span>
+                  </a>
+                )}
+
+                {/* GitHub */}
+                {data.socials?.find(s => s.platform === 'GitHub') && (
+                  <a
+                    href={data.socials.find(s => s.platform === 'GitHub')?.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-slate-500/20 to-gray-500/20 border border-slate-500/30 rounded-sm hover:border-slate-500/60 transition-all hover:scale-105"
+                    title="GitHub Profile"
+                  >
+                    <Github size={24} className="text-slate-300" />
+                    <span className="font-mono text-slate-300">GitHub</span>
+                  </a>
+                )}
+              </div>
+
+              <p className="text-sm text-slate-500 mb-8 code-font">Or reach out directly via any of the above channels</p>
               
               <footer className="mt-20 text-slate-600 code-font text-xs uppercase tracking-widest">
                 <p>/* System Status: Operational | © {new Date().getFullYear()} {data.name} */</p>

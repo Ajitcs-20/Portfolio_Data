@@ -5,9 +5,10 @@ import { PortfolioData } from '../types';
 
 interface HeroProps {
   data: PortfolioData;
+  onInitializeChat?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ data }) => {
+export const Hero: React.FC<HeroProps> = ({ data, onInitializeChat }) => {
   const [displayText, setDisplayText] = useState('');
   const fullText = `> ${data.title}`;
 
@@ -68,7 +69,10 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
           </p>
           
           <div className="flex flex-wrap gap-4">
-            <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-sm font-semibold transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]">
+            <button 
+              onClick={onInitializeChat}
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-sm font-semibold transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+            >
               Initialize Chat
               <ArrowRight size={18} />
             </button>
