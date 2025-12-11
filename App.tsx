@@ -35,19 +35,24 @@ const App: React.FC = () => {
   const handleInitializeChat = () => {
     chatRef.current?.openChat();
   };
+ useEffect(() => {
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        // Because of the rootMargin -50% setting, only the section
+        // currently in the middle of the screen will be "intersecting"
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id as SectionType);
+        }
+      });
+    };
 
-  // Intersection Observer to update active section on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as SectionType);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+    const observer = new IntersectionObserver(handleIntersect, {
+      root: null,
+      // This margin creates a horizontal line in the middle of the viewport.
+      // An element is only "intersecting" when it crosses this line.
+      rootMargin: '-50% 0px -50% 0px', 
+      threshold: 0
+    });
 
     Object.values(SectionType).forEach((section) => {
       const element = document.getElementById(section);
@@ -143,7 +148,7 @@ const App: React.FC = () => {
           </section>
 
           <section id={SectionType.EXPERIENCE}>
-            <Experience experience={data.experience} />
+            <Experience experience={data.experience} id={SectionType.EXPERIENCE} />
           </section>
 
           <section id={SectionType.PROJECTS} className="bg-dark-lighter/30 border-t border-white/5">
