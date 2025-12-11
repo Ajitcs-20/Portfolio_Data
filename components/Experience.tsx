@@ -10,7 +10,7 @@ interface ExperienceProps {
 
 export const Experience: React.FC<ExperienceProps> = ({ experience, id }) => {
   return (
-    <section id={id} className="min-h-screen bg-dark py-20 relative flex items-center">
+    <section id={id} className="min-h-screen py-20 relative flex items-center">
       <div className="container mx-auto px-6 relative">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
