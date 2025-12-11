@@ -27,12 +27,26 @@ export const Experience: React.FC<ExperienceProps> = ({ experience, id }) => {
           </p>
         </motion.div>
 
-        <div className="relative max-w-5xl mx-auto">
-          {/* Animated Pipeline Line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-slate-800 overflow-hidden rounded">
-              <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-transparent via-primary to-transparent animate-data-flow" style={{ backgroundSize: '100% 200%' }}></div>
-          </div>
-
+      <div className="relative max-w-5xl mx-auto">
+  {/* Animated Pipeline Line */}
+  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-slate-800 overflow-hidden rounded">
+      {/* 
+         FIX: Replaced static div with motion.div 
+         1. Removed 'top-0' so we can control position via animation
+         2. Uses repeat: Infinity to loop forever
+         3. Animates 'top' from -10% (above view) to 110% (below view)
+      */}
+      <motion.div 
+        className="absolute left-0 w-full h-72 bg-gradient-to-b from-transparent via-primary to-transparent"
+        animate={{ top: ["-150px", "100%"] }}
+        transition={{ 
+          duration: 3, 
+          repeat: Infinity, 
+          ease: "linear",
+          repeatDelay: 0.5 
+        }}
+      />
+  </div>
           <div className="space-y-12">
             {experience.map((exp, index) => (
               <motion.div 
