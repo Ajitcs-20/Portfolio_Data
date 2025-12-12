@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, Cpu, Layers } from 'lucide-react';
+import { TechBackground } from './TechBackground';
 
 interface SkillsProps {
   skills: string[];
@@ -8,11 +9,12 @@ interface SkillsProps {
 
 export const Skills: React.FC<SkillsProps> = ({ skills }) => {
   return (
-    <div className="container mx-auto px-6 py-20 bg-dark-lighter/20 border-y border-white/5">
+    <div className="relative container mx-auto px-6 py-20 bg-dark-lighter/20 border-y border-white/5 overflow-hidden">
+      <TechBackground />
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
-        
+
         {/* Left Side: Title & Info */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -26,7 +28,7 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
           <p className="text-slate-400 mb-8 leading-relaxed">
             My engineering toolkit is optimized for scalable data processing, cloud architecture, and modern frontend development.
           </p>
-          
+
           <div className="bg-slate-900 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
             <div className="flex justify-between border-b border-slate-800 pb-2 mb-2">
               <span>CPU_USAGE</span>
@@ -40,11 +42,11 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
         </motion.div>
 
         {/* Right Side: JSON/Grid View */}
-        <motion.div 
-           className="md:w-2/3 bg-dark border border-slate-800 rounded-lg p-6 font-mono text-sm shadow-2xl relative overflow-hidden"
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
+        <motion.div
+          className="md:w-2/3 bg-dark border border-slate-800 rounded-lg p-6 font-mono text-sm shadow-2xl relative overflow-hidden"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
         >
           {/* Header */}
           <div className="absolute top-0 left-0 w-full h-8 bg-slate-800 border-b border-slate-700 flex items-center px-4 gap-2">
@@ -56,7 +58,7 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
 
           <div className="mt-6 text-slate-300">
             <div><span className="text-purple-400">export const</span> <span className="text-yellow-300">stack</span> = <span className="text-blue-400">{'{'}</span></div>
-            
+
             <div className="pl-4 py-2 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
               {skills.map((skill, index) => (
                 <motion.div
@@ -74,7 +76,7 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
 
             <div><span className="text-blue-400">{'}'}</span>;</div>
           </div>
-          
+
           {/* Decorative blinking cursor at end */}
           <div className="mt-2 w-2 h-4 bg-slate-500 animate-pulse inline-block"></div>
         </motion.div>
