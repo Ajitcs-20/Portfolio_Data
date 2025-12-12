@@ -7,6 +7,7 @@ import { Skills } from './components/Skills';
 import { Terminal } from './components/Terminal';
 import { WaterAnimation } from './components/WaterAnimation';
 import { FloatingParticles } from './components/FloatingParticles';
+import { DataPipeline } from './components/DataPipeline';
 import { AssistantChat, type AssistantChatHandle } from './components/AssistantChat';
 import { PortfolioData, SectionType } from './types';
 import { DEFAULT_PORTFOLIO } from './constants';
@@ -35,7 +36,7 @@ const App: React.FC = () => {
   const handleInitializeChat = () => {
     chatRef.current?.openChat();
   };
- useEffect(() => {
+  useEffect(() => {
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         // Because of the rootMargin -50% setting, only the section
@@ -50,7 +51,7 @@ const App: React.FC = () => {
       root: null,
       // This margin creates a horizontal line in the middle of the viewport.
       // An element is only "intersecting" when it crosses this line.
-      rootMargin: '-50% 0px -50% 0px', 
+      rootMargin: '-50% 0px -50% 0px',
       threshold: 0
     });
 
@@ -96,7 +97,7 @@ const App: React.FC = () => {
       {/* Animated Background Effects */}
       <FloatingParticles count={60} />
       <WaterAnimation />
-      
+
       {/* Background Grid */}
       <div className="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-10"></div>
 
@@ -104,17 +105,17 @@ const App: React.FC = () => {
       <AssistantChat ref={chatRef} />
 
       <div className="relative z-20">
-        <Navigation 
-          activeSection={activeSection} 
+        <Navigation
+          activeSection={activeSection}
           scrollToSection={scrollToSection}
           socials={data.socials}
         />
-        
+
         <Terminal />
 
         {/* AI Trigger Button (Bottom Right) */}
         {process.env.API_KEY && (
-          <button 
+          <button
             onClick={handleRegenerate}
             disabled={isGenerating}
             className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-primary to-secondary p-4 rounded-full shadow-lg shadow-cyan-500/30 hover:scale-110 transition-transform disabled:opacity-50 disabled:cursor-not-allowed group border border-white/10"
@@ -136,7 +137,7 @@ const App: React.FC = () => {
           <section id={SectionType.ABOUT} className="py-20 bg-dark-lighter/50 relative border-y border-white/5">
             <div className="container mx-auto px-6 text-center max-w-3xl">
               <div className="inline-block p-2 rounded-lg bg-primary/10 mb-6 border border-primary/20 cursor-pointer transition-all duration-300 hover:bg-primary/20 hover:border-primary/40 hover:drop-shadow-[0_0_12px_rgba(14,165,233,0.6)]">
-                 <span className="code-font text-primary text-sm font-bold">SELECT * FROM developers WHERE name = 'Ajit'</span>
+                <span className="code-font text-primary text-sm font-bold">SELECT * FROM developers WHERE name = 'Ajit'</span>
               </div>
               <h2 className="text-3xl font-bold mb-8 cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(14,165,233,0.8)] hover:text-cyan-300">About <span className="text-gradient">Me</span></h2>
               <p className="text-lg text-slate-400 leading-loose code-font font-light cursor-pointer transition-all duration-300 hover:text-slate-200 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">{data.bio}</p>
@@ -144,11 +145,15 @@ const App: React.FC = () => {
           </section>
 
           <section id={SectionType.SKILLS}>
-             <Skills skills={data.skills} />
+            <Skills skills={data.skills} />
           </section>
 
           <section id={SectionType.EXPERIENCE}>
             <Experience experience={data.experience} id={SectionType.EXPERIENCE} />
+          </section>
+
+          <section className="border-t border-white/5 bg-dark-lighter/10">
+            <DataPipeline />
           </section>
 
           <section id={SectionType.PROJECTS} className="bg-dark-lighter/30 border-t border-white/5">
@@ -205,7 +210,7 @@ const App: React.FC = () => {
               </div>
 
               <p className="text-sm text-slate-500 mb-8 code-font">Or reach out directly via any of the above channels</p>
-              
+
               <footer className="mt-20 text-slate-600 code-font text-xs uppercase tracking-widest">
                 <p>/* System Status: Operational | © {new Date().getFullYear()} {data.name} */</p>
               </footer>
